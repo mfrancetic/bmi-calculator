@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_calculator/input/widgets/icon_content.dart';
 import 'package:flutter_bmi_calculator/input/widgets/reusable_card.dart';
+import 'package:flutter_bmi_calculator/models/gender.dart';
 import 'package:flutter_bmi_calculator/utils/constants/colors.dart';
 import 'package:flutter_bmi_calculator/utils/constants/dimensions.dart';
 import 'package:flutter_bmi_calculator/utils/constants/strings.dart';
@@ -14,6 +15,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender? selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,21 +27,39 @@ class _InputPageState extends State<InputPage> {
           children: [
             Expanded(
               child: Row(
-                children: const [
+                children: [
                   Expanded(
-                      child: ReusableCard(
-                    color: inputPageActiveCardColor,
-                    cardChild: IconContent(
-                      label: iconContentLabelMale,
-                      icon: FontAwesomeIcons.mars,
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
+                    child: ReusableCard(
+                      color: selectedGender == Gender.male
+                          ? inputPageActiveCardColor
+                          : inputPageInactiveCardColor,
+                      cardChild: const IconContent(
+                        label: iconContentLabelMale,
+                        icon: FontAwesomeIcons.mars,
+                      ),
                     ),
                   )),
                   Expanded(
-                      child: ReusableCard(
-                    color: inputPageActiveCardColor,
-                    cardChild: IconContent(
-                      label: iconContentLabelFemale,
-                      icon: FontAwesomeIcons.venus,
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    child: ReusableCard(
+                      color: selectedGender == Gender.female
+                          ? inputPageActiveCardColor
+                          : inputPageInactiveCardColor,
+                      cardChild: const IconContent(
+                        label: iconContentLabelFemale,
+                        icon: FontAwesomeIcons.venus,
+                      ),
                     ),
                   )),
                 ],
