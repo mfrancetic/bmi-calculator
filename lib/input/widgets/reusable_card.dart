@@ -4,9 +4,11 @@ class ReusableCard extends StatelessWidget {
   const ReusableCard({
     Key? key,
     required this.color,
+    this.cardChild,
   }) : super(key: key);
 
   final Color color;
+  final Widget? cardChild;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,7 @@ class ReusableCard extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(10.0),
       ),
+      child: cardChild,
     );
   }
 }
