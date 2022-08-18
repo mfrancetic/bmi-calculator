@@ -1,2 +1,2 @@
-const iconContentLabelFemale = 'FEMALE';
-const iconContentLabelMale = 'MALE';
+const kIconContentLabelFemale = 'FEMALE';
+const kIconContentLabelMale = 'MALE';

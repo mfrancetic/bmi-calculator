@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bmi_calculator/utils/constants/colors.dart';
 import 'package:flutter_bmi_calculator/utils/constants/dimensions.dart';
-
-const labelTextStyle = TextStyle(
-  fontSize: iconContentLabelTextStyleFontSize,
-  color: iconContentLabelTextStyleColor,
-);
+import 'package:flutter_bmi_calculator/utils/constants/styles.dart';
 
 class IconContent extends StatelessWidget {
   const IconContent({
@@ -24,14 +19,14 @@ class IconContent extends StatelessWidget {
       children: <Widget>[
         Icon(
           icon,
-          size: iconContentIconSize,
+          size: kIconContentIconSize,
         ),
         const SizedBox(
-          height: iconContentDividerHeight,
+          height: kIconContentDividerHeight,
         ),
         Text(
           label,
-          style: labelTextStyle,
+          style: kLabelTextStyle,
         )
       ],
     );
