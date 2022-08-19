@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bmi_calculator/input/widgets/accent_bottom_button.dart';
 import 'package:flutter_bmi_calculator/input/widgets/icon_content.dart';
 import 'package:flutter_bmi_calculator/input/widgets/increase_decrease_value_card.dart';
 import 'package:flutter_bmi_calculator/input/widgets/reusable_card.dart';
 import 'package:flutter_bmi_calculator/models/gender.dart';
 import 'package:flutter_bmi_calculator/utils/constants/colors.dart';
-import 'package:flutter_bmi_calculator/utils/constants/dimensions.dart';
 import 'package:flutter_bmi_calculator/utils/constants/strings.dart';
 import 'package:flutter_bmi_calculator/utils/constants/styles.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -158,12 +158,9 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              color: kAccentColor,
-              margin: const EdgeInsets.only(
-                  top: kInputPageBottomContainerMarginTop),
-              width: double.infinity,
-              height: kInputPageBottomContainerHeight,
+            AccentBottomButton(
+              title: 'CALCULATE',
+              onTap: () => Navigator.of(context).pushNamed('/results'),
             )
           ],
         ));
