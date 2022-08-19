@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_calculator/input/widgets/icon_content.dart';
 import 'package:flutter_bmi_calculator/input/widgets/reusable_card.dart';
+import 'package:flutter_bmi_calculator/input/widgets/round_icon_button.dart';
 import 'package:flutter_bmi_calculator/models/gender.dart';
 import 'package:flutter_bmi_calculator/utils/constants/colors.dart';
 import 'package:flutter_bmi_calculator/utils/constants/dimensions.dart';
@@ -18,6 +19,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -110,12 +112,50 @@ class _InputPageState extends State<InputPage> {
             )),
             Expanded(
               child: Row(
-                children: const [
+                children: [
                   Expanded(
                       child: ReusableCard(
                     color: kInputPageActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'WEIGHT',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(weight.toString(), style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                                child: RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  if (weight > 0) {
+                                    weight--;
+                                  }
+                                });
+                              },
+                            )),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                                child: RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            )),
+                          ],
+                        ),
+                      ],
+                    ),
                   )),
-                  Expanded(
+                  const Expanded(
                       child: ReusableCard(
                     color: kInputPageActiveCardColor,
                   )),
