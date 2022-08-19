@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_calculator/input/widgets/icon_content.dart';
+import 'package:flutter_bmi_calculator/input/widgets/increase_decrease_value_card.dart';
 import 'package:flutter_bmi_calculator/input/widgets/reusable_card.dart';
-import 'package:flutter_bmi_calculator/input/widgets/round_icon_button.dart';
 import 'package:flutter_bmi_calculator/models/gender.dart';
 import 'package:flutter_bmi_calculator/utils/constants/colors.dart';
 import 'package:flutter_bmi_calculator/utils/constants/dimensions.dart';
@@ -20,6 +20,7 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
   int weight = 60;
+  int age = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -114,50 +115,45 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                      child: ReusableCard(
-                    color: kInputPageActiveCardColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'WEIGHT',
-                          style: kLabelTextStyle,
-                        ),
-                        Text(weight.toString(), style: kNumberTextStyle),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Expanded(
-                                child: RoundIconButton(
-                              icon: FontAwesomeIcons.minus,
-                              onPressed: () {
-                                setState(() {
-                                  if (weight > 0) {
-                                    weight--;
-                                  }
-                                });
-                              },
-                            )),
-                            const SizedBox(
-                              width: 10.0,
-                            ),
-                            Expanded(
-                                child: RoundIconButton(
-                              icon: FontAwesomeIcons.plus,
-                              onPressed: () {
-                                setState(() {
-                                  weight++;
-                                });
-                              },
-                            )),
-                          ],
-                        ),
-                      ],
+                    child: ReusableCard(
+                      color: kInputPageActiveCardColor,
+                      cardChild: IncreaseDecreaseValueCard(
+                        title: 'WEIGHT',
+                        value: weight,
+                        onIncrease: () {
+                          setState(() {
+                            weight++;
+                          });
+                        },
+                        onDecrease: () {
+                          if (weight > 0) {
+                            setState(() {
+                              weight--;
+                            });
+                          }
+                        },
+                      ),
                     ),
-                  )),
-                  const Expanded(
+                  ),
+                  Expanded(
                       child: ReusableCard(
                     color: kInputPageActiveCardColor,
+                    cardChild: IncreaseDecreaseValueCard(
+                      title: 'AGE',
+                      value: age,
+                      onIncrease: () {
+                        setState(() {
+                          age++;
+                        });
+                      },
+                      onDecrease: () {
+                        if (height > 0) {
+                          setState(() {
+                            age--;
+                          });
+                        }
+                      },
+                    ),
                   )),
                 ],
               ),
