@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bmi_calculator/calculator_brain.dart';
 import 'package:flutter_bmi_calculator/input/widgets/accent_bottom_button.dart';
 import 'package:flutter_bmi_calculator/input/widgets/icon_content.dart';
 import 'package:flutter_bmi_calculator/input/widgets/increase_decrease_value_card.dart';
 import 'package:flutter_bmi_calculator/input/widgets/reusable_card.dart';
 import 'package:flutter_bmi_calculator/models/gender.dart';
 import 'package:flutter_bmi_calculator/utils/constants/colors.dart';
+import 'package:flutter_bmi_calculator/utils/constants/navigation_arguments.dart';
 import 'package:flutter_bmi_calculator/utils/constants/strings.dart';
 import 'package:flutter_bmi_calculator/utils/constants/styles.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -159,9 +161,17 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             AccentBottomButton(
-              title: 'CALCULATE',
-              onTap: () => Navigator.of(context).pushNamed('/results'),
-            )
+                title: 'CALCULATE',
+                onTap: () {
+                  CalculatorBrain calculatorBrain =
+                      CalculatorBrain(height: height, weight: weight);
+
+                  Navigator.of(context).pushNamed('/results',
+                      arguments: ResultsPageArguments(
+                          bmiResult: calculatorBrain.calculateBMI(),
+                          resultText: calculatorBrain.getResult(),
+                          interpretation: calculatorBrain.getInterpretation()));
+                })
           ],
         ));
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bmi_calculator/input/input_page.dart';
 import 'package:flutter_bmi_calculator/results/results_page.dart';
+import 'package:flutter_bmi_calculator/utils/constants/navigation_arguments.dart';
 
 void main() => runApp(const BMICalculator());
 
@@ -17,7 +18,15 @@ class BMICalculator extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const InputPage(),
-        '/results': (context) => const ResultsPage()
+        '/results': (context) {
+          final args = ModalRoute.of(context)!.settings.arguments
+              as ResultsPageArguments;
+          return ResultsPage(
+            bmiResult: args.bmiResult,
+            resultText: args.resultText,
+            interpretation: args.interpretation,
+          );
+        }
       },
     );
   }
